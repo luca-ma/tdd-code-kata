@@ -79,11 +79,16 @@ public class CartTest
 			Assert.assertEquals(180, total); //4 di A --> 130 + 50 == 180
 		}
 		
+<<<<<<< HEAD
 		
 
 		//  "E" costs 55.
 		//  But it costs just 19 if you have bought two of "C".
 		//refactor....del discount....intra item
+=======
+		// A     50       3 for 130
+		//========================
+>>>>>>> refs/remotes/origin/master
 		@Test
 		public void testAnotherSpecialOffer() {
 			Cassier cassier = new Cassier();
