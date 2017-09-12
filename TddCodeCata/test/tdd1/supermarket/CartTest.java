@@ -62,20 +62,23 @@ public class CartTest
 		public void testThreeKindItem() {
 			
 		}
-		// 3 for A
-		//and 4 for A
+		// A     50       3 for 130
 		@Test
 		public void testSpecialOffer() {
 			Cassier cassier = new Cassier();
 			Cart cart = new SimpleCart();
-			cassier.addDiscount(new XForYDiscount(articleA,3,130));
 			
 			cart.add(itemBuilder.create(articleA, 3));
+			cassier.addDiscount(new XForYDiscount(articleA,3,130));
 			int total = cassier.total(cart);
+			Assert.assertEquals(130, total); //3 di A --> 130
 			
-			Assert.assertEquals(130, total);
+			cart.add(itemBuilder.create(articleA, 1));
+			total = cassier.total(cart);
+			Assert.assertEquals(180, total); //4 di A --> 130 + 50 == 180
 		}
 		
+		// A     50       3 for 130
 		//========================
 		@Test
 		public void testItems() {

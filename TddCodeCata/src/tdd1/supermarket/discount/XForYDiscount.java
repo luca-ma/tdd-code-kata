@@ -18,24 +18,30 @@ public class XForYDiscount implements Discount
 {
 
 	private Article article;
-	private double itemAmount;
-	private double forAmount;
+	private int numberForDiscount;
+	private int valueForDiscount;
 
-	public XForYDiscount(Article article, double xAmount, double yAmount) {
+	public XForYDiscount(Article article, int numberForDiscount, int valueForDiscount) {
 		this.article = article;
-		this.itemAmount = xAmount;
-		this.forAmount = yAmount;
+		this.numberForDiscount = numberForDiscount;
+		this.valueForDiscount = valueForDiscount;
 	}
 	
 	@Override
-	public double discount(Cart cart)
+	public int discount(Cart cart)
 	{
+	//	int numOfItems=0;
 		int amount = 0;
 		for (Item item : cart.getItemsInArticle(article)) {
 			amount += item.getAmount();
+			//numOfItems++;
 		}
-		double discount = (amount / itemAmount) * article.total(itemAmount - forAmount);
-		return discount;
+		if (amount/this.numberForDiscount >=1) {
+			//c'è uno sconto
+			return (article.total(amount))-((amount/this.numberForDiscount)*this.valueForDiscount+article.total(amount%this.numberForDiscount));
+		}else {
+			return article.total(amount);
+		}
 	}
 
 }
