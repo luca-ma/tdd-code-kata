@@ -10,7 +10,7 @@ public class Article
 		this.price = price;
 	}
 
-	public double total(double amount) {
+	public int total(int amount) {
 		return price.total(amount);
 	}
 

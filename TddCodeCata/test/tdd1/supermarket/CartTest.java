@@ -25,6 +25,7 @@ public class CartTest
 		private ArticleFactory articleFactory = new ArticleFactory();
 		private Article articleA = articleFactory.article("A",50);
 		private Article articleB = articleFactory.article("B",30);
+		private Article articleE = articleFactory.article("55",30);
 		private ItemBuilder itemBuilder = new ItemBuilder();
 
 		@Test
@@ -58,47 +59,50 @@ public class CartTest
 		}
 		
 		
-		@Test
+		@Test 
 		public void testThreeKindItem() {
 			
 		}
-		// 3 for A
-		//and 4 for A
+		// A     50       3 for 130
 		@Test
 		public void testSpecialOffer() {
 			Cassier cassier = new Cassier();
 			Cart cart = new SimpleCart();
-			cassier.addDiscount(new XForYDiscount(articleA,3,130));
 			
 			cart.add(itemBuilder.create(articleA, 3));
+			cassier.addDiscount(new XForYDiscount(articleA,3,130));
 			int total = cassier.total(cart);
+			Assert.assertEquals(130, total); //3 di A --> 130
 			
-			Assert.assertEquals(130, total);
+			cart.add(itemBuilder.create(articleA, 1));
+			total = cassier.total(cart);
+			Assert.assertEquals(180, total); //4 di A --> 130 + 50 == 180
 		}
 		
-		//========================
+		
+
+		//  "E" costs 55.
+		//  But it costs just 19 if you have bought two of "C".
+		//refactor....del discount....intra item
 		@Test
-		public void testItems() {
+		public void testAnotherSpecialOffer() {
 			Cassier cassier = new Cassier();
 			Cart cart = new SimpleCart();
-			cart.add(itemBuilder.create(articleA, 3));
+			cassier.addDiscount(new XForYDiscount(articleE,3,130));
+			cart.add(itemBuilder.create(articleE, 1));
 			
-			double total = cassier.total(cart);
-			
-			Assert.assertEquals(4.0, total, 0.001);
+			int total = cassier.total(cart);
+			Assert.assertEquals(130, total); //3 di A --> 130
+
+			cart.add(itemBuilder.create(articleA, 1));
+			total = cassier.total(cart);
+			Assert.assertEquals(180, total); //4 di A --> 130 + 50 == 180
 		}
 
-		@Test
-		public void test3For2() {
-			Cassier cassier = new Cassier();
-			cassier.addDiscount(new XForYDiscount(articleA, 3, 2));
-			Cart cart = new SimpleCart();
-			cart.add(itemBuilder.create(articleA ,1));
-			cart.add(itemBuilder.create(articleB ,3));
-			double total = cassier.total(cart);
-			
-			Assert.assertEquals(4.0, total, 0.001);
-		}
+		
+		
+	
+	
 
 
 }

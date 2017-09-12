@@ -10,6 +10,6 @@ import tdd1.supermarket.Cart;
  */
 public interface Discount {
 
-	double discount(Cart cart);
+	int discount(Cart cart);
 
 }

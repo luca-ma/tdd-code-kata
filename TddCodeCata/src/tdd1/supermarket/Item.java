@@ -5,9 +5,9 @@ public class Item
 
 	
 	private final Article article;
-	private final double amount;
+	private final int amount;
 
-	public Item(Article article, double amount) {
+	public Item(Article article, int amount) {
 		this.article = article;
 		this.amount = amount;
 	}

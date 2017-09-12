@@ -51,38 +51,38 @@ public class CheckoutTest {
 //		assertEquals(50 + 30 + 20, checkOut.total());
 //	}
 
-	@Test@Ignore
-	public void specialOffer() throws Exception {
-		checkOut.scan("A");
-		checkOut.scan("A");
-		checkOut.scan("A");
-		assertEquals(130, checkOut.total());
-		checkOut.scan("A");
-		assertEquals(130 + 50, checkOut.total());
-	}
+//	@Test@Ignore
+//	public void specialOffer() throws Exception {
+//		checkOut.scan("A");
+//		checkOut.scan("A");
+//		checkOut.scan("A");
+//		assertEquals(130, checkOut.total());
+//		checkOut.scan("A");
+//		assertEquals(130 + 50, checkOut.total());
+//	}
 
-	@Test@Ignore
-	public void anotherSpecialOffer() throws Exception {
-		checkOut.scan("B");
-		checkOut.scan("B");
-		assertEquals(45, checkOut.total());
-		checkOut.scan("B");
-		checkOut.scan("B");
-		assertEquals(45 + 45, checkOut.total());
-	}
+//	@Test@Ignore
+//	public void anotherSpecialOffer() throws Exception {
+//		checkOut.scan("B");
+//		checkOut.scan("B");
+//		assertEquals(45, checkOut.total());
+//		checkOut.scan("B");
+//		checkOut.scan("B");
+//		assertEquals(45 + 45, checkOut.total());
+//	}
 
-	@Test@Ignore
-	public void thisIsDifficult() throws Exception {
-		// One more variation:
-		// "E" costs 55.
-		// But it costs just 19 if you have bought two of "C".
-		// This is probably going to be difficult!
-		checkOut.scan("E");
-		assertEquals(55, checkOut.total());
-		checkOut.scan("C");
-		assertEquals(55 + 20, checkOut.total());
-		checkOut.scan("C");
-		assertEquals(19 + 20 + 20, checkOut.total());
-	}
+//	@Test@Ignore
+//	public void thisIsDifficult() throws Exception {
+//		// One more variation:
+//		// "E" costs 55.
+//		// But it costs just 19 if you have bought two of "C".
+//		// This is probably going to be difficult!
+//		checkOut.scan("E");
+//		assertEquals(55, checkOut.total());
+//		checkOut.scan("C");
+//		assertEquals(55 + 20, checkOut.total());
+//		checkOut.scan("C");
+//		assertEquals(19 + 20 + 20, checkOut.total());
+//	}
 
 }

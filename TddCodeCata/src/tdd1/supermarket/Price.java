@@ -3,13 +3,13 @@ package tdd1.supermarket;
 public class Price
 {
 
-	private final double price;
+	private final int price;
 
-	public Price(double price) {
+	public Price(int price) {
 		this.price = price;
 	}
 
-	public double total(double amount) {
+	public int total(int amount) {
 		return price * amount;
 	}
 	
