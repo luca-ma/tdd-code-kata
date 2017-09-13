@@ -25,7 +25,8 @@ public class CartTest
 		private ArticleFactory articleFactory = new ArticleFactory();
 		private Article articleA = articleFactory.article("A",50);
 		private Article articleB = articleFactory.article("B",30);
-		private Article articleE = articleFactory.article("55",30);
+		private Article articleC = articleFactory.article("C",20);
+		private Article articleE = articleFactory.article("E",55);
 		private ItemBuilder itemBuilder = new ItemBuilder();
 
 		@Test
@@ -50,7 +51,7 @@ public class CartTest
 			cart.add(itemBuilder.create(articleA, 1));
 			int total = cassier.total(cart);
 			
-			Assert.assertEquals(1080, total);
+			Assert.assertEquals(100, total);
 		}
 
 		@Test
@@ -78,30 +79,26 @@ public class CartTest
 			total = cassier.total(cart);
 			Assert.assertEquals(180, total); //4 di A --> 130 + 50 == 180
 		}
-		
-<<<<<<< HEAD
-		
+
 
 		//  "E" costs 55.
 		//  But it costs just 19 if you have bought two of "C".
 		//refactor....del discount....intra item
-=======
-		// A     50       3 for 130
-		//========================
->>>>>>> refs/remotes/origin/master
+
 		@Test
 		public void testAnotherSpecialOffer() {
 			Cassier cassier = new Cassier();
 			Cart cart = new SimpleCart();
-			cassier.addDiscount(new XForYDiscount(articleE,3,130));
-			cart.add(itemBuilder.create(articleE, 1));
+			//cassier.addDiscount(new XForYDiscount(articleE,3,130));
 			
+			cart.add(itemBuilder.create(articleE, 1));
 			int total = cassier.total(cart);
-			Assert.assertEquals(130, total); //3 di A --> 130
+			Assert.assertEquals(55, total); //3 di A --> 130
 
-			cart.add(itemBuilder.create(articleA, 1));
+			cart.add(itemBuilder.create(articleE, 1));
+			cart.add(itemBuilder.create(articleC, 2));
 			total = cassier.total(cart);
-			Assert.assertEquals(180, total); //4 di A --> 130 + 50 == 180
+			Assert.assertEquals(58, total); //4 di A --> 130 + 50 == 180
 		}
 
 		
